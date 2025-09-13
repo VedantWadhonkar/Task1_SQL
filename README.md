@@ -1,33 +1,53 @@
 # Task1_SQL
-Library managments
-Library Management Database (SQL Project)
+# 📚 Library Management Database (SQL Project)
 
-This project contains an SQL-based Library Management System with the following features:
+This project is a simple **Library Management System** implemented in SQL.  
+It demonstrates how to create and manage relationships between **Authors, Publishers, and Books**.
 
-Database Name: LibraryDB
+---
 
-Tables:
+## 🗂 Database Details
 
-Author → Stores author details.
+- **Database Name:** `LibraryDB`  
 
-Publisher → Stores publisher details.
+### Tables
+1. **Author**  
+   - `AuthorID` (Primary Key)  
+   - `Author_Name`  
 
-Book → Stores book details and links authors with publishers.
+2. **Publisher**  
+   - `PublisherID` (Primary Key)  
+   - `Publisher_Name`  
 
-Relationships:
+3. **Book**  
+   - `BookID` (Primary Key)  
+   - `Title`  
+   - `AuthorID` (Foreign Key → Author.AuthorID)  
+   - `PublisherID` (Foreign Key → Publisher.PublisherID)  
 
-Each Book is linked to one Author.
+---
 
-Each Book is linked to one Publisher.
+## 📥 Sample Data Inserted
+- **Authors**:  
+  - J.K. Rowling  
+  - George Orwell  
 
-Sample Data Inserted:
+- **Publishers**:  
+  - Bloomsbury  
+  - Secker & Warburg  
 
-Authors: J.K. Rowling, George Orwell
+- **Books**:  
+  - *Harry Potter and the Philosopher’s Stone* (Author: J.K. Rowling, Publisher: Bloomsbury)  
+  - *1984* (Author: George Orwell, Publisher: Secker & Warburg)  
 
-Publishers: Bloomsbury, Secker & Warburg
+---
 
-Books: Harry Potter and the Philosopher’s Stone, 1984
+## 🔍 Example Query
+To fetch all book details along with author and publisher names:
 
-Queries Included:
+```sql
+SELECT b.BookID, b.Title, a.Author_Name, p.Publisher_Name
+FROM Book b
+JOIN Author a ON b.AuthorID = a.AuthorID
+JOIN Publisher p ON b.PublisherID = p.PublisherID;
 
-Fetch book details with author and publisher names using SQL JOIN
